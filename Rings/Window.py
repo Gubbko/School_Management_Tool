@@ -27,7 +27,18 @@ Frame_Rings_Data.tkraise()
 Frame_Rings_Data.pack_propagate(False)
 Frame_Rings_Data.grid(row=0, column=1, sticky="nesw")
 
-cal = Calendar(Frame_Calendar, selectmode = "day", year=2023, month = 5, day = 22)
+
+
+def curent_day():
+    date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    date = date.split(" ")
+    date = date[0].split("-")
+    date[0] = int(date[0])
+    date[1] = int(date[1])
+    date[2] = int(date[2])
+    return date
+
+cal = Calendar(Frame_Calendar, selectmode = "day", year=curent_day()[0], month = curent_day()[1], day = curent_day()[2])
 cal.pack(pady = 20, fill="both", expand=True)
 
 
@@ -65,7 +76,7 @@ cal.pack(pady = 20, fill="both", expand=True)
 
 
 
-print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+
 
 root.mainloop()
 
