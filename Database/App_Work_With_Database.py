@@ -6,8 +6,11 @@ from datetime import datetime
 list = []
 entry_list = []
 
-def add_object():                                           # Add new object to list of object, with list from entry's
-    inserting_data = btn_pressed()
+def add_object():
+    now = datetime.now()
+    inserting_data = [entry_in.get() for entry_in in List_for_Entrys]
+    inserting_data.append(now)# Add new object to list of object, with list from entry's
+    
     #connection, cursor = connect_to_database("IT_Park.db")
     #Insert_data(connection, cursor, "IT_Product", inserting_data)
     #for i in cursor.execute("select * from IT_Product"):
@@ -19,25 +22,15 @@ def delete_object(list):
         list.pop()
 def show_object(list):
     for item in list:
-        print(item)
-def btn_pressed():                                          # Get data from entry's and return list of them
-    now = datetime.now()
-    return [
-        entry_list[0].get(),
-        entry_list[1].get(),
-        entry_list[2].get(),
-        entry_list[3].get(),
-        entry_list[4].get(),
-        entry_list[5].get(),
-        now,
-    ]
+        print(item)                                        # Get data from entry's and return list of them
+    
 
 def Creating_root_of_window():                          # Crating root of the main program window
     root = tk.Tk()
     root.title("Database")
     #root.iconbitmap("db.ico")
-    root.eval("tk::PlaceWindow . center")
-    root.geometry("746x400")
+    #root.eval("tk::PlaceWindow . center")
+    root.geometry("1515x400")
     bg_colour = '#3d6466'
     framebtn = frame_parameters(root, bg_colour, 0)
     frameent = frame_parameters(root, bg_colour, 1)
@@ -66,7 +59,7 @@ def Entry_Parameters(frame_entry, text, column):            # Define parameters 
     entry_list.append(tk.Entry(frame_entry,                     # Creating entry
                                width=20))
     entry_list[-1].insert(0, text)                              # Inserting text for the entry to help user with understanding what to put in it
-    entry_list[-1].grid(row=1, column=column)                   # Define placement of the entry
+    #entry_list[-1].grid(row=2, column=column)                   # Define placement of the entry
 
 def Create_Buttons(frame_buttons):                          # Create buttons to make some apperations with data
     btn_width = 35
@@ -110,6 +103,32 @@ def Create_Buttons(frame_buttons):                          # Create buttons to 
 frame_buttons, frame_entry, root = Creating_root_of_window()
 Create_Entrys(frame_entry)
 Create_Buttons(frame_buttons)
+
+List_for_Lables_and_Entry = ["E-v.\n", "Bilansikont\n","Klass\n", "Vara nr.\n",
+                  "Alamnr.\n", "Inv.nr.\n", "Vara\n kirjeldus 1", "Kapit.Kp\n",
+                  "Kulum\n perioodini", "Jääkv.per\n", "Aadress\n", "Aadressi\n text",
+                  "Ruum\n", "Kogus\n", "Ühik\n", "Töötaja\n",
+                  "Eesnimi\n", "Perenimi\n", "L. 2\n", "Vastutav\n isik",
+                  "Inventuuri\n kp.seisuga", "Inv.märkus\n"
+                  ]
+List_for_Lables = []
+List_for_Entrys = []
+for index, lable in enumerate(List_for_Lables_and_Entry):
+    new_label = tk.Label(frame_entry, text=lable, width=9).grid(row=1, column=index)
+    List_for_Lables.append(new_label)
+for index, entry in enumerate(List_for_Lables_and_Entry):
+    List_for_Entrys.append(tk.Entry(frame_entry, width=9))
+    List_for_Entrys[-1].grid(row=2, column=index)
+
+
+
+
+
+
+
+
+
+
 
 root.mainloop()
 
