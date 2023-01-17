@@ -1,5 +1,5 @@
 # sourcery skip: avoid-builtin-shadow
-import tkinter as tk
+from tkinter import *
 from Work_with_Database import connect_to_database, Insert_data
 from datetime import datetime
 
@@ -26,7 +26,7 @@ def show_object(list):
     
 
 def Creating_root_of_window():                          # Crating root of the main program window
-    root = tk.Tk()
+    root = Tk()
     root.title("Database")
     #root.iconbitmap("db.ico")
     #root.eval("tk::PlaceWindow . center")
@@ -35,10 +35,10 @@ def Creating_root_of_window():                          # Crating root of the ma
     framebtn = frame_parameters(root, bg_colour, 0)
     frameent = frame_parameters(root, bg_colour, 1)
     
-    #tk.Button(root, text="Exit", command=root.quit).grid(row=0, column=0)
+    #Button(root, text="Exit", command=root.quit).grid(row=0, column=0)
     return framebtn,frameent, root
 def frame_parameters(root, bg_colour, row):                 # Define parameters for frame's
-    parametrs = tk.Frame(root,                                  # Put frame in root of the window
+    parametrs = Frame(root,                                  # Put frame in root of the window
                          width = 400,                           #
                          height = 800,                          #
                          bg = bg_colour)                        # Background colour
@@ -56,14 +56,14 @@ def Create_Entrys(frame_entry):                             # Create entrys to p
     Entry_Parameters(frame_entry, "Inventarization Number", 4)  # Create entry for Inventarization number of the object
     Entry_Parameters(frame_entry, "Class", 5)                   # Create entry for Class where the product instaled
 def Entry_Parameters(frame_entry, text, column):            # Define parameters for entry's
-    entry_list.append(tk.Entry(frame_entry,                     # Creating entry
+    entry_list.append(Entry(frame_entry,                     # Creating entry
                                width=20))
     entry_list[-1].insert(0, text)                              # Inserting text for the entry to help user with understanding what to put in it
     #entry_list[-1].grid(row=2, column=column)                   # Define placement of the entry
 
 def Create_Buttons(frame_buttons):                          # Create buttons to make some apperations with data
     btn_width = 35
-    btn_Add_Object = tk.Button(frame_buttons,
+    btn_Add_Object = Button(frame_buttons,
         text='Add_Object',
         font=('TkHeadingFont',20),
         bg = "#28393a",
@@ -75,7 +75,7 @@ def Create_Buttons(frame_buttons):                          # Create buttons to 
         activeforeground='black',
         command=lambda:add_object())
     btn_Add_Object.grid(row=0, column=0)
-    btn_Delete_Object = tk.Button(frame_buttons,
+    btn_Delete_Object = Button(frame_buttons,
         text='Delete_Object',
         font=('TkHeadingFont',20),
         bg = "#28393a",
@@ -87,7 +87,7 @@ def Create_Buttons(frame_buttons):                          # Create buttons to 
         activeforeground='black',
         command=lambda:delete_object(list))
     btn_Delete_Object.grid(row=0, column=1)
-    btn_Show_Objects = tk.Button(frame_buttons,
+    btn_Show_Objects = Button(frame_buttons,
         text='Show Objects',
         font=('TkHeadingFont',20),
         bg = "#28393a",
@@ -114,21 +114,11 @@ List_for_Lables_and_Entry = ["E-v.\n", "Bilansikont\n","Klass\n", "Vara nr.\n",
 List_for_Lables = []
 List_for_Entrys = []
 for index, lable in enumerate(List_for_Lables_and_Entry):
-    new_label = tk.Label(frame_entry, text=lable, width=9).grid(row=1, column=index)
+    new_label = Label(frame_entry, text=lable, width=9).grid(row=1, column=index)
     List_for_Lables.append(new_label)
 for index, entry in enumerate(List_for_Lables_and_Entry):
-    List_for_Entrys.append(tk.Entry(frame_entry, width=9))
+    List_for_Entrys.append(Entry(frame_entry, width=9))
     List_for_Entrys[-1].grid(row=2, column=index)
-
-
-
-
-
-
-
-
-
-
 
 root.mainloop()
 
