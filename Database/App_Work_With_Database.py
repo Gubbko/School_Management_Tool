@@ -11,15 +11,17 @@ def add_object():
     inserting_data = [entry_in.get() for entry_in in List_for_Entrys]
     inserting_data.append(now)# Add new object to list of object, with list from entry's
     
-    #connection, cursor = connect_to_database("IT_Park.db")
-    #Insert_data(connection, cursor, "IT_Product", inserting_data)
-    #for i in cursor.execute("select * from IT_Product"):
-    #    print(i)
-    #connection.close()
+    connection, cursor = connect_to_database("IT_Park.db")
+    Insert_data(connection, cursor, "IT_Product", inserting_data)
+    for i in cursor.execute("select * from IT_Product"):
+        print(i)
+    connection.close()
     list.append(inserting_data)
+    
 def delete_object(list):
     if list:
         list.pop()
+        
 def show_object(list):
     for item in list:
         print(item)                                        # Get data from entry's and return list of them
@@ -30,7 +32,7 @@ def Creating_root_of_window():                          # Crating root of the ma
     root.title("Database")
     #root.iconbitmap("db.ico")
     #root.eval("tk::PlaceWindow . center")
-    root.geometry("1515x400")
+    root.geometry("1587x400")
     bg_colour = '#3d6466'
     framebtn = frame_parameters(root, bg_colour, 0)
     frameent = frame_parameters(root, bg_colour, 1)
@@ -106,19 +108,21 @@ Create_Buttons(frame_buttons)
 
 List_for_Lables_and_Entry = ["E-v.\n", "Bilansikont\n","Klass\n", "Vara nr.\n",
                   "Alamnr.\n", "Inv.nr.\n", "Vara\n kirjeldus 1", "Kapit.Kp\n",
-                  "Kulum\n perioodini", "Jääkv.per\n", "Aadress\n", "Aadressi\n text",
-                  "Ruum\n", "Kogus\n", "Ühik\n", "Töötaja\n",
-                  "Eesnimi\n", "Perenimi\n", "L. 2\n", "Vastutav\n isik",
-                  "Inventuuri\n kp.seisuga", "Inv.märkus\n"
+                  "Soetusmaksumus\n", "Kulum\n perioodini", "Jääkv.per\n", "Aadress\n",
+                  "Aadressi\n text", "Ruum\n", "Kogus\n", "Ühik\n",
+                  "Töötaja\n", "Eesnimi\n", "Perenimi\n", "L. 2\n",
+                  "Vastutav\n isik", "Inventuuri\n kp.seisuga", "Inv.märkus\n"
                   ]
 List_for_Lables = []
 List_for_Entrys = []
 for index, lable in enumerate(List_for_Lables_and_Entry):
     new_label = Label(frame_entry, text=lable, width=9).grid(row=1, column=index)
     List_for_Lables.append(new_label)
+    #print(index)
 for index, entry in enumerate(List_for_Lables_and_Entry):
     List_for_Entrys.append(Entry(frame_entry, width=9))
     List_for_Entrys[-1].grid(row=2, column=index)
+    #print(index)
 
 root.mainloop()
 

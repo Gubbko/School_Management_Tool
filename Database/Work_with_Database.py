@@ -37,8 +37,18 @@ def Insert_data(connection, cursor, table_name, inserting_data):
     #inserting_data = ['HP','LJ','Prinet', 2562, 163169, 'A109', '11.01.2023']
     res = cursor.execute("SELECT name FROM sqlite_master WHERE name='spam'")
     res.fetchone() is None
-    cursor.execute(f"insert into {table_name} values (?,?,?,?,?,?,?)", inserting_data)
+    cursor.execute(f"insert into {table_name} values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", inserting_data)
     connection.commit()
+
+
+
+
+
+
+
+
+
+
 
 # ----------------------------------------------------------------------------------------------------------
 # -----Main code--------------------------------------------------------------------------------------------
@@ -46,6 +56,23 @@ def Insert_data(connection, cursor, table_name, inserting_data):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#connection, cursor = connect_to_database("IT_Park.db")
+#Create_table(cursor, "IT_Product","Ev, Bilansikont, Klass, Varanr, Alamnr, Invnr, Varakirjeldus, KapitKp, Soetusmaksumus, Kulum perioodini, Jääkvper, Aadress, Aadressi text, Ruum, Kogus, Ühik, Töötaja, Eesnimi, Perenimi, L, Vastutav isik, Inventuuri kpseisuga, Invmärkus, Yes")
 
 """
 inserting_data = ['HP','LJ','Prinet', 2562 , 163169 , 'A109', '11.01.2023']
