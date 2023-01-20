@@ -40,13 +40,18 @@ def Insert_data(connection, cursor, table_name, inserting_data):
     cursor.execute(f"insert into {table_name} values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", inserting_data)
     connection.commit()
 
+def Read_database(connection, cursor):
+    cursor.execute("SELECT * FROM IT_Product")
+    results = cursor.fetchall()
+    print("--- Data from Database ---")
+    for result in results:
+        print(result)
+    connection.commit()
 
-
-
-
-
-
-
+def Remove_Item_from_Database(connection, cursor):
+    sql = 'DELETE FROM IT_Product WHERE Klass=?'
+    cursor.execute(sql, ("1",))
+    connection.commit()
 
 
 
@@ -56,13 +61,11 @@ def Insert_data(connection, cursor, table_name, inserting_data):
 
 
 
+connection, cursor = connect_to_database("IT_Park.db")
+# Execute a query
+Remove_Item_from_Database(connection, cursor)
 
-
-
-
-
-
-
+Read_database(connection, cursor)
 
 
 

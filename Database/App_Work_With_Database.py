@@ -1,6 +1,6 @@
 # sourcery skip: avoid-builtin-shadow
 from tkinter import *
-from Work_with_Database import connect_to_database, Insert_data
+from Work_with_Database import connect_to_database, Insert_data, Read_database
 from datetime import datetime
 
 list = []
@@ -13,8 +13,9 @@ def add_object():
     
     connection, cursor = connect_to_database("IT_Park.db")
     Insert_data(connection, cursor, "IT_Product", inserting_data)
-    for i in cursor.execute("select * from IT_Product"):
-        print(i)
+    #for i in cursor.execute("select * from IT_Product"):
+    #    print(i)
+    print(f" Adding nest data to database: {inserting_data}")
     connection.close()
     list.append(inserting_data)
     
@@ -23,8 +24,10 @@ def delete_object(list):
         list.pop()
         
 def show_object(list):
-    for item in list:
-        print(item)                                        # Get data from entry's and return list of them
+    connection, cursor = connect_to_database("IT_Park.db")
+    Read_database(connection, cursor)
+    #for item in list:
+    #    print(item)                                        # Get data from entry's and return list of them
     
 
 def Creating_root_of_window():                          # Crating root of the main program window
