@@ -58,12 +58,12 @@ frame_buttons, frame_entry, root = Creating_root_of_window(496,532)
 
 def entr_frame():
     Create_Labes(List_for_Lables_and_Entry, frame_entry)
-    Create_Entry(List_for_Lables_and_Entry, frame_entry)
+    return Create_Entry(List_for_Lables_and_Entry, frame_entry)
 
-def btn_frame():
-    Create_Buttons(frame_buttons)
+def btn_frame(entrys):
+    Create_Buttons(frame_buttons, entrys)
 
-entr_frame()
-btn_frame()
+entrys = entr_frame()
+btn_frame(entrys)
 
 root.mainloop()

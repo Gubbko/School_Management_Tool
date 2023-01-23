@@ -34,23 +34,28 @@ def Create_table(cursor, table_name, table_atributes):
 #       - Data to insert to the table
 """
 def Insert_data(connection, cursor, table_name, inserting_data):
-    #inserting_data = ['HP','LJ','Prinet', 2562, 163169, 'A109', '11.01.2023']
+    number_of_vaues = 5
+    question_marks = ''
+    for _ in range(number_of_vaues):
+        question_marks += f"{question_marks}?,"
+    question_marks = question_marks[:-1]
+    values = "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     res = cursor.execute("SELECT name FROM sqlite_master WHERE name='spam'")
     res.fetchone() is None
-    cursor.execute(f"insert into {table_name} values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", inserting_data)
+    cursor.execute(f"insert into {table_name} {values}", inserting_data)
     connection.commit()
 
-def Read_database(connection, cursor):
-    cursor.execute("SELECT * FROM IT_Product")
+def Read_database(connection, cursor, table_name):
+    cursor.execute(f"SELECT * FROM {table_name}")
     results = cursor.fetchall()
     print("--- Data from Database ---")
     for result in results:
         print(result)
     connection.commit()
 
-def Remove_Item_from_Database(connection, cursor):
-    sql = 'DELETE FROM IT_Product WHERE Klass=?'
-    cursor.execute(sql, ("1",))
+def Remove_Item_from_Database(connection, cursor, table_name, class_to, value):
+    sql = f'DELETE FROM {table_name} WHERE {class_to}=?'
+    cursor.execute(sql, (f"{value}",))
     connection.commit()
 
 
@@ -63,14 +68,9 @@ def Remove_Item_from_Database(connection, cursor):
 
 connection, cursor = connect_to_database("IT_Park.db")
 # Execute a query
-Remove_Item_from_Database(connection, cursor)
+Remove_Item_from_Database(connection, cursor, "IT_Product", "Klass", "")
 
-Read_database(connection, cursor)
-
-
-
-
-
+Read_database(connection, cursor, "IT_Product")
 
 
 

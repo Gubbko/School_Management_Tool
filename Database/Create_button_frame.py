@@ -2,6 +2,30 @@ from tkinter import *
 from datetime import datetime
 from Work_with_Database import connect_to_database, Insert_data, Read_database
 
+List_for_Lables_and_Entry = ["E-v.",      
+                                    "Bilansikont",
+                                    "Klass",
+                                    "Vara nr.",
+                                    "Alamnr.",
+                                    "Inv.nr.",
+                                    "Vara kirjeldus 1",
+                                    "Kapit.Kp",
+                                    "Soetusmaksumus",
+                                    "Kulum perioodini",
+                                    "Jääkv.per",
+                                    "Aadress",
+                                    "Aadressi text",
+                                    "Ruum",
+                                    "Kogus",
+                                    "Ühik",
+                                    "Töötaja",
+                                    "Eesnimi",
+                                    "Perenimi",
+                                    "L. 2",
+                                    "Vastutav isik",
+                                    "Inventuuri kp.seisuga",
+                                    "Inv.märkus"]
+
 def add_object(List_for_Entrys):
     now = datetime.now()
     inserting_data = [entry_in.get() for entry_in in List_for_Entrys]
@@ -11,17 +35,17 @@ def add_object(List_for_Entrys):
     Insert_data(connection, cursor, "IT_Product", inserting_data)
     print(f" Adding nest data to database: {inserting_data}")
     connection.close()
-    list.append(inserting_data)
+    list.append(inserting_data, 1)
 
 def delete_object(list):
     if list:
         list.pop()
 
-def show_object():
-    connection, cursor = connect_to_database("IT_Park.db")
+def show_object(Table):
+    connection, cursor = connect_to_database(Table)
     Read_database(connection, cursor)
 
-def Create_Buttons(frame_buttons):                          # Create buttons to make some apperations with data
+def Create_Buttons(frame_buttons, entrys):                          # Create buttons to make some apperations with data
     btn_width = 35
     btn_Add_Object = Button(frame_buttons,
         text='Add_Object',
@@ -33,7 +57,7 @@ def Create_Buttons(frame_buttons):                          # Create buttons to 
         cursor = 'hand2',
         activebackground='#badee2',
         activeforeground='black',
-        command=lambda:add_object())
+        command=lambda:add_object(entrys))
     btn_Add_Object.grid(row=0, column=0)
     btn_Delete_Object = Button(frame_buttons,
         text='Delete_Object',
@@ -57,5 +81,5 @@ def Create_Buttons(frame_buttons):                          # Create buttons to 
         cursor = 'hand2',
         activebackground='#badee2',
         activeforeground='black',
-        command=lambda:show_object(list))
+        command=lambda:show_object("IT_Park.db"))
     btn_Show_Objects.grid(row=2, column=0)

@@ -32,13 +32,14 @@ def Create_Labes(List_for_Lables_and_Entry, frame):
     for index, lable in enumerate(List_for_Lables_and_Entry):
         new_label = Label(frame, text=lable, width=17).grid(row=index+1, column=1, pady=1)
         List_for_Lables.append(new_label)
-    
+
 def Create_Entry(List_for_Lables_and_Entry, frame):
     List_for_Entrys = []
     for index, _ in enumerate(List_for_Lables_and_Entry):
         List_for_Entrys.append(Entry(frame, width=17))
         List_for_Entrys[-1].grid(row=index+1, column=2)
-            
+    return List_for_Entrys
+
 def loop(root):
     root.mainloop()
 
