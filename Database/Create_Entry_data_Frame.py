@@ -1,8 +1,10 @@
-from tkinter import *
+from tkinter import Label, Entry
+
 """
 def Create_frame(root, x = 0, y = 0):
     frame = Frame(root).grid(row=x,column=y)
-    List_for_Lables_and_Entry = ["E-v.",      
+    List_for_Lables_and_Entry = [   "ID",
+                                    "E-v.",      
                                     "Bilansikont",
                                     "Klass",
                                     "Vara nr.",
@@ -27,6 +29,7 @@ def Create_frame(root, x = 0, y = 0):
                                     "Inv.märkus"]
     return frame, List_for_Lables_and_Entry
 """
+
 def Create_Labes(List_for_Lables_and_Entry, frame):
     List_for_Lables = []
     for index, lable in enumerate(List_for_Lables_and_Entry):

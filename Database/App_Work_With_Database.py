@@ -5,29 +5,31 @@ from Create_button_frame import *
 
 list = []
 entry_list = []
-List_for_Lables_and_Entry = ["E-v.",      
+List_for_Lables_and_Entry = [       "ID",
+                                    "E_v",      
                                     "Bilansikont",
                                     "Klass",
-                                    "Vara nr.",
-                                    "Alamnr.",
-                                    "Inv.nr.",
-                                    "Vara kirjeldus 1",
-                                    "Kapit.Kp",
+                                    "Vara_nr",
+                                    "Alamnr",
+                                    "Inv_nr",
+                                    "Vara_kirjeldus_1",
+                                    "Kapit_Kp",
                                     "Soetusmaksumus",
-                                    "Kulum perioodini",
-                                    "Jääkv.per",
+                                    "Kulum_perioodini",
+                                    "Jääkv_per",
                                     "Aadress",
-                                    "Aadressi text",
+                                    "Aadressi_text",
                                     "Ruum",
                                     "Kogus",
                                     "Ühik",
                                     "Töötaja",
                                     "Eesnimi",
                                     "Perenimi",
-                                    "L. 2",
-                                    "Vastutav isik",
-                                    "Inventuuri kp.seisuga",
-                                    "Inv.märkus"]
+                                    "L__2",
+                                    "Vastutav_isik",
+                                    "Inventuuri_kp_seisuga",
+                                    "Inv_märkus",
+                                    "Date_when_added"]
 
 def Creating_root_of_window(x,y):                          # Crating root of the main program window
     root = Tk()
@@ -41,7 +43,7 @@ def Creating_root_of_window(x,y):                          # Crating root of the
     
     #Button(root, text="Exit", command=root.quit).grid(row=0, column=0)
     return framebtn,frameent, root
-def frame_parameters(root, bg_colour, col):                 # Define parameters for frame's
+def frame_parameters(root, bg_colour, col):                # Define parameters for frame's
     parametrs = Frame(root,                                  # Put frame in root of the window
                          width = 400,                           #
                          height = 800,                          #
@@ -54,7 +56,7 @@ def frame_parameters(root, bg_colour, col):                 # Define parameters 
                    pady=5)                               #
     return parametrs
 
-frame_buttons, frame_entry, root = Creating_root_of_window(496,532)
+frame_buttons, frame_entry, root = Creating_root_of_window(496,len(List_for_Lables_and_Entry)*23+5)
 
 def entr_frame():
     Create_Labes(List_for_Lables_and_Entry, frame_entry)

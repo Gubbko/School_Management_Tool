@@ -1,30 +1,32 @@
-from tkinter import *
+from tkinter import Button
 from datetime import datetime
-from Work_with_Database import connect_to_database, Insert_data, Read_database
+from Work_with_Database import connect_to_database, Insert_data, Read_database, Remove_Item_from_Database
 
-List_for_Lables_and_Entry = ["E-v.",      
+List_for_Lables_and_Entry = [       "ID",
+                                    "E_v",      
                                     "Bilansikont",
                                     "Klass",
-                                    "Vara nr.",
-                                    "Alamnr.",
-                                    "Inv.nr.",
-                                    "Vara kirjeldus 1",
-                                    "Kapit.Kp",
+                                    "Vara_nr",
+                                    "Alamnr",
+                                    "Inv_nr",
+                                    "Vara_kirjeldus_1",
+                                    "Kapit_Kp",
                                     "Soetusmaksumus",
-                                    "Kulum perioodini",
-                                    "Jääkv.per",
+                                    "Kulum_perioodini",
+                                    "Jääkv_per",
                                     "Aadress",
-                                    "Aadressi text",
+                                    "Aadressi_text",
                                     "Ruum",
                                     "Kogus",
                                     "Ühik",
                                     "Töötaja",
                                     "Eesnimi",
                                     "Perenimi",
-                                    "L. 2",
-                                    "Vastutav isik",
-                                    "Inventuuri kp.seisuga",
-                                    "Inv.märkus"]
+                                    "L__2",
+                                    "Vastutav_isik",
+                                    "Inventuuri_kp_seisuga",
+                                    "Inv_märkus",
+                                    "Date_when_added"]
 
 def add_object(List_for_Entrys):
     now = datetime.now()
@@ -35,15 +37,19 @@ def add_object(List_for_Entrys):
     Insert_data(connection, cursor, "IT_Product", inserting_data)
     print(f" Adding nest data to database: {inserting_data}")
     connection.close()
-    list.append(inserting_data, 1)
+    #list.append(inserting_data, 1)
 
-def delete_object(list):
-    if list:
-        list.pop()
+def delete_object(List_for_Entrys):
+    now = datetime.now()
+    inserting_data = [entry_in.get() for entry_in in List_for_Entrys]
+    inserting_data.append(now)
+    connection, cursor = connect_to_database("IT_Park.db")
+    Remove_Item_from_Database(connection, cursor, "IT_Product", inserting_data, List_for_Lables_and_Entry)
+    connection.close()
 
 def show_object(Table):
     connection, cursor = connect_to_database(Table)
-    Read_database(connection, cursor)
+    Read_database(connection, cursor, "IT_Product")
 
 def Create_Buttons(frame_buttons, entrys):                          # Create buttons to make some apperations with data
     btn_width = 35
@@ -69,7 +75,7 @@ def Create_Buttons(frame_buttons, entrys):                          # Create but
         cursor = 'hand2',
         activebackground='#badee2',
         activeforeground='black',
-        command=lambda:delete_object(list))
+        command=lambda:delete_object(entrys))
     btn_Delete_Object.grid(row=1, column=0)
     btn_Show_Objects = Button(frame_buttons,
         text='Show Objects',
